@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poorcode</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #001920;
+            padding: 20px 50px;
+        }
+
+        header h1 {
+            color: #888;
+            font-size: 64px;
+            font-weight: 300;
+        }
+
+        article > header {
+            margin: 0 0 30px 0;
+            padding: 0 0 10px 0;
+            border-bottom: 5px solid #c6153d;
+        }
+
+        article > header > h2 {
+            margin: 10px 0 0 0;
+            padding: 0;
+        }
+
+        article > header > small {
+            color: #999;
+        }
+
+        p {
+            line-height: 1.3em;
+            margin: 0 0 15px 0;
+        }
+
+        a {
+            color: #c6153d;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #259dc6;
+        }
+
+        .content {
+            max-width: 1024px;
+        }
+
+        body > footer {
+            padding: 10px 50px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="{{ base_url }}">Poorcode</a></h1>
+    </header>
+    <section>
+        {% posts %}
+        <article>
+            <header>
+                <h2><a href="{{ base_url }}/post/{{ id }}">{{ title }}</a></h2>
+                <small>{{ date }}</small>
+            </header>
+            <div class="content">
+                {{ content }}
+            </div>
+        </article>
+        {% posts %}
+    </section>
+    <footer>
+        <a href="http://github.com/adlpz/poorcode">Code for this site</a> &CenterDot; <a href="{{ base_url }}/cache.php">Cache status</a> &CenterDot; Last update {{ last_cache_build }} UTC
+    </footer>
+</body>
+</html>
