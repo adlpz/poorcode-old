@@ -19,7 +19,7 @@ class Blog {
     private $renderer;
 
     private $env = [
-        'base_url' => 'http://poorcode.dev'
+        'base_url' => 'http://poorcode.com'
     ];
 
 

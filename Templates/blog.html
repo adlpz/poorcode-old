@@ -3,66 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <title>Poorcode</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <!--Look at my inline CSS, you infidels. SUFFER!!-->
     <style>
+        body, div, fieldset, form, html, label, legend {
+            margin: 0;
+            padding: 0
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        td, th {
+            text-align: left;
+            vertical-align: top
+        }
+
+        caption, h1, h2, h3, h4, h5, h6, td, th {
+            font-weight: 400;
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            border: 0
+        }
+
+        @media (min-width: 700px) {
+            .main {
+                margin: 40px 260px 0 0 !important;
+            }
+
+            body > header {
+                position: fixed;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 260px;
+            }
+
+            body > footer {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 260px;
+
+            }
+        }
+
         body {
             font-family: Helvetica, Arial, sans-serif;
             color: #001920;
-            padding: 20px 50px;
+            margin: 0;
+            font-family: 'Open Sans', Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+        }
+
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+        body > header {
+            padding: 40px;
+            background-color: #1a1a1a;
+        }
+
+        body > header p {
+            color: #999;
+        }
+
+        body > header a {
+            color: #fff;
+        }
+
+        body > footer {
+            padding: 40px;
+            background-color: #1a1a1a;
+            color: #666;
+            font-size: .8em;
+        }
+
+        body > footer a {
+            color: #888;
+        }
+
+        .main {
+            padding: 0 40px;
+            margin-top: 46px;
         }
 
         header h1 {
             color: #888;
-            font-size: 64px;
+            font-size: 32px;
             font-weight: 300;
         }
 
+        header h1 a {
+            color: #fff;
+        }
+
+        article {
+            margin-bottom: 40px;
+            color: #555;
+        }
+
         article > header {
+            position: relative;
             margin: 0 0 30px 0;
             padding: 0 0 10px 0;
-            border-bottom: 5px solid #c6153d;
+            border-bottom: 1px solid #0050c6;
         }
 
         article > header > h2 {
-            margin: 10px 0 0 0;
+            font-size: 32px;
+            font-weight: 300;
+            margin: 0;
             padding: 0;
+        }
+        article > header > h2 a {
+            color: #ff1966;
         }
 
         article > header > small {
             color: #999;
+            float: right;
+            margin-top: -10px;
         }
 
         p {
             line-height: 1.3em;
             margin: 0 0 15px 0;
+            color: #444;
         }
 
         a {
-            color: #c6153d;
+            color: #0050c6;
             text-decoration: none;
         }
+
         a:hover {
-            color: #259dc6;
+            color: #fff;
+            background: #666;
         }
 
         .content {
             max-width: 1024px;
         }
 
-        body > footer {
-            padding: 10px 50px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-            left: 0;
-            background: #fff;
-            box-shadow: 0 0 15px rgba(0,0,0,.1);
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mono {
+            font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1><a href="{{ base_url }}">Poorcode</a></h1>
-    </header>
+<header>
+    <h1><a href="{{ base_url }}"><span class="mono">Poorcode</span></a></h1>
+
+    <p>Adventures in missed goals, abandoned projects and questionable productivity.</p>
+
+    <nav>
+        <a href="http://twitter.com/adlpz">Twitter</a>
+        <a href="http://github.com/adlpz">Github</a>
+    </nav>
+</header>
+
+<div class="main">
     <section>
         {% posts %}
         <article>
@@ -76,8 +191,12 @@
         </article>
         {% posts %}
     </section>
-    <footer>
-        <a href="http://github.com/adlpz/poorcode">Code for this site</a> &CenterDot; <a href="{{ base_url }}/cache.php">Cache status</a> &CenterDot; Last update {{ last_cache_build }} UTC
-    </footer>
+</div>
+
+<footer>
+    <a href="http://github.com/adlpz/poorcode">Code for this site</a> &centerdot;
+    <a href="{{ base_url }}/cache.php">Cache</a><br/>
+    {{ last_cache_build }} UTC
+</footer>
 </body>
 </html>
