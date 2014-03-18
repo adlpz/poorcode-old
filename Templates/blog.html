@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Poorcode</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <!--Look at my inline CSS, you infidels. SUFFER!!-->
     <style>
         body, div, fieldset, form, html, label, legend {
@@ -82,7 +83,6 @@
 
         body > header a {
             color: #fff;
-            text-shadow: 0 0 15px rgba(0,0,0,.6);
         }
 
         body > footer {
@@ -114,9 +114,14 @@
 
         article {
             color: #555;
-            margin: 0 auto 50px auto;
+            margin: 0 auto 60px auto;
             display: block;
             max-width: 768px;
+        }
+
+        article + article {
+            border-top: 1px solid #ebebeb;
+            padding-top: 40px;
         }
 
         article > header {
@@ -135,8 +140,14 @@
             color: #ff1966;
         }
 
-        article > header > small {
+        article > footer {
             color: #999;
+            text-align: right;
+            font-size: .8em;
+        }
+
+        article > footer a {
+            color: #000;
         }
 
         p {
@@ -176,8 +187,9 @@
     <p>Adventures in missed goals, abandoned projects and questionable productivity.</p>
 
     <nav>
-        <a href="http://twitter.com/adlpz">Twitter</a>
-        <a href="http://github.com/adlpz">Github</a>
+        <a href="http://twitter.com/adlpz"><i class="fa fa-github"></i> Twitter</a>
+        <a href="http://github.com/adlpz"><i class="fa fa-twitter"></i> Github</a>
+        <a href="http://prealfa.com"><i class="fa fa-user"> Me</i></a>
     </nav>
 </header>
 
@@ -186,21 +198,24 @@
         {% posts %}
         <article>
             <header>
-                <small>{{ date }}</small>
-                <h2><a href="{{ base_url }}/post/{{ id }}">{{ title }}</a></h2>
+                <h2><i class="fa fa-angle-left"></i> <a href="{{ base_url }}/post/{{ id }}">{{ title }}</a> <i class="fa fa-angle-right"></i></h2>
             </header>
             <div class="content">
                 {{ content }}
             </div>
+            <footer>
+                <i class="fa fa-clock-o"></i> {{ date }}<br/>
+                <a href="http://twitter.com/home?status=@adlpz%20{{ base_url }}/post/{{ id }}"><i class="fa fa-twitter"></i> Discuss</a>
+            </footer>
         </article>
         {% posts %}
     </section>
 </div>
 
 <footer>
-    <a href="http://github.com/adlpz/poorcode">Code for this site</a> &centerdot;
-    <a href="{{ base_url }}/cache.php">Cache</a><br/>
-    {{ last_cache_build }} UTC
+    <a href="http://github.com/adlpz/poorcode"><i class="fa fa-code-fork"></i> Fork this</a> &centerdot;
+    <a href="{{ base_url }}/cache.php"><i class="fa fa-hdd-o"></i> Binary Cache</a> <br/>
+    &copy; Adri&agrave; L&oacute;pez 2014
 </footer>
 </body>
 </html>
