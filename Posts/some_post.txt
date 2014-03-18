@@ -1,7 +1,0 @@
-1
-This is very much some random post
-2014-02-27 01:41:00
-<p>This is a new post i'm writing to test the new blog thing.
-<p>Funnily enough there is no front-end to the blog, just the sort of database crap thing lol.</p>
-
-<p>Pretty weird.</p>
