@@ -42,6 +42,7 @@ class Manager {
         foreach ($postFiles as $postFile) {
             $posts[] = Post::createFromPlainText(file_get_contents($postFile));
         }
+		usort($posts, function(Post $a, Post $b) { return $a->getId() >= $b->getId() ? -1 : 1; });
         return $posts;
 
     }
