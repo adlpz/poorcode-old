@@ -1,5 +1,7 @@
 <?php
 
+require_once "Templating/Minidown.php";
+
 require_once "Cache/Cache.php";
 require_once "Cache/Post.php";
 require_once "Cache/Manager.php";

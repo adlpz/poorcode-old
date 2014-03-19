@@ -2,6 +2,8 @@
 
 namespace Poorcode\Cache;
 
+use Adlpz\Minidown\Markdown;
+
 class Post {
 
     const ID_AND_SIZE_FORMAT = "SS";
@@ -33,7 +35,7 @@ class Post {
         $new->setId($id);
         $new->setDate($datetime);
         $new->setTitle($title);
-        $new->setContent($content);
+        $new->setContent(Markdown::markdown($content));
 
         return $new;
     }
