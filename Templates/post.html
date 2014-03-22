@@ -7,7 +7,7 @@
     </div>
     <footer>
         <i class="fa fa-clock-o"></i> {{ date }}<br/>
-        <i class="fa fa-comment"></i> <a href="{{ base_url }}/post/{{ id }}#disqus_thread">Comments</a> &centerdot;
+        <i class="fa fa-comment"></i> <a href="{{ base_url }}/post/{{ id }}#disqus_thread" data-disqus-identifier="{{ id }}">Comments</a> &centerdot;
         <i class="fa fa-twitter"></i> <a href="http://twitter.com/home?status=@adlpz%20{{ base_url }}/post/{{ id }}">Tweet</a>
     </footer>
 </article>
