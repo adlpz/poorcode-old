@@ -19,7 +19,7 @@ class Blog {
     private $renderer;
 
     private $env = [
-        'base_url' => 'http://poorcode.com'
+        'base_url' => 'http://poorcode.dev'
     ];
 
 
@@ -45,8 +45,14 @@ class Blog {
 
     public function pageAction($page, $count = self::POSTS_PER_PAGE)
     {
-        return $this->renderer->render('./Templates/blog.html',
-            array_merge($this->env, ['posts' => $this->cache->getPage($page, $count)])
+        return $this->renderer->render('./Templates/page.html',
+            array_merge($this->env,
+                [
+                    'posts' => $this->cache->getPage($page, $count),
+                    'next_page' => $page + 1,
+                    'prev_page' => ($page - 1) >= 0 ? $page - 1 : $page
+                ]
+            )
         );
     }
 
@@ -56,7 +62,7 @@ class Blog {
         if (is_null($post)) {
             throw new NotFoundException("No post with id $id found");
         }
-        return $this->renderer->render('./Templates/blog.html',
+        return $this->renderer->render('./Templates/single.html',
             array_merge($this->env, ['posts' => [$post]])
         );
     }

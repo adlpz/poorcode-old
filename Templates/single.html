@@ -1,0 +1,25 @@
+{$ header.html $}
+<div class="main">
+    <section>
+        {% posts %}
+        {$ post.html $}
+        <h3>Discuss</h3>
+        <script type="text/javascript">
+            window.addEventListener("load", function() {
+                var disqus_shortname = 'poorcode';
+                var disqus_identifier = '{{ id }}';
+                var disqus_title = '{{ title }}';
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            });
+        </script>
+        <small>
+            <a href="http://disqus.com" class="dsq-brlink">Powered by <span class="logo-disqus">Disqus</span></a>
+        </small>
+        {% posts %}
+    </section>
+</div>
+{$ footer.html $}

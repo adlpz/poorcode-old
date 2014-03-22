@@ -11,8 +11,11 @@ namespace Poorcode\Templating;
  */
 class Renderer {
 
+    protected $dir;
+
     public function render($template, $arguments)
     {
+        $this->dir = dirname($template) . '/';
         return $this->renderString(file_get_contents($template), $arguments);
     }
 
@@ -34,6 +37,14 @@ class Renderer {
                 $repeatedTemplate .= $self->renderString($internalTemplate, $internalArguments, $parentArguments);
             }
             return $repeatedTemplate;
+        }, $template);
+
+        // Render imports
+        $importRegex = '/\{\$\s*([a-zA-Z0-9\-\_\.\/\\\\\ ]+)\s*\$\}/';
+        $self = $this;
+        $template = preg_replace_callback($importRegex, function($matches) use ($self, $arguments, $parentArguments) {
+            $string = file_get_contents($self->dir . trim($matches[1]));
+            return $self->renderString($string, $arguments, $parentArguments);
         }, $template);
 
         // Replace variables

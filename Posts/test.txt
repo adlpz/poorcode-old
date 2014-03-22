@@ -1,0 +1,39 @@
+2
+Markdowning
+Wed Mar 19 04:18:48 MSK 2014
+
+Well that was fast. Last post was about two hours ago. It's now two in the morning CET, and already I got tired of writing HTML.
+
+Of course the best candidate to make my life easier was Markdown. But I was *waaay* to lazy to figure out how to use one of the
+available libraries. So I wrote an interpreter.
+
+Of course is the most incomplete thing ever, but it allows me to do basic
+things like links, pargraphs, images, etc. It's ugly as hell, too, look:
+
+```
+public static function markdown($markdown)
+    {
+        $rules = [
+            '/^(#+)\s*(.+)/m' => function($m) { $h = strlen($m[1]); return
+sprintf('<h%s>%s</h%s>', $h, $m[2], $h); },
+            '/\!\[([^\]]+)\]\(([^\)]+)\)/' => '<img src="\2" title="\1">',
+            '/\[([^\]]+)\]\(([^\)]+)\)/' => '<a href="\2">\1</a>',
+            '/(\*\*|__)(.*?)\1/' => '<strong>\2</strong>',
+            '/(\*|_)(.*?)\1/' => '<em>\2</em>',
+            '/((?:`)+)(.*?)\1/s' => function ($m) { $s = str_replace("\n",
+"\0", '<code>'.$m[2].'</code>'); return strlen($m[1]) > 1 ? "<pre>$s</pre>" :
+$s; },
+        ];
+        foreach ($rules as $regex => $sub) {
+            $markdown = call_user_func((is_callable($sub) ?
+'preg_replace_callback' : 'preg_replace'), $regex, $sub, $markdown);
+        }
+        $lines = array_filter(array_map('trim', explode("\n\n", $markdown)));
+        $html = implode("\n", array_map(function($t){ return
+preg_match("/^\<(h|p|ul|li|blockquote|hr|br|pre).*/", $t) ? $t : "<p>$t</p>";
+}, $lines));
+        return str_replace("\0", "\n", $html);
+    }
+```.
+
+Anyway, now seems a moment as good as any to go to sleep. Good night!
