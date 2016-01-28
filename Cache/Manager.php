@@ -32,6 +32,10 @@ class Manager
     {
         $cacheUpdateTimestamp = $this->cache->getLastUpdated()->getTimestamp();
         $files = $this->storage->getAllPostMetadata();
+        if ($this->cache->getPostCount() != count(files)) {
+            $this->cache->rebuild($this->cacheFile, $this->storage->getAllPosts());
+            return;
+        }
         foreach ($files as $file) {
             if ($file->getModification() > $cacheUpdateTimestamp) {
                 // Cache is old. Rebuild
