@@ -39,7 +39,10 @@ class Blog {
 
     public function run()
     {
-        $route = isset($_GET['r']) ? $_GET['r'] : '/';
+        $requestUri = $_SERVER['REQUEST_URI'];
+        $documentUri = $_SERVER['DOCUMENT_URI'];
+        $pattern = "/^" . str_replace("/", "\\/", preg_quote($documentUri)) . "/";
+        $route = preg_replace($pattern, "", $requestUri);
         return $this->router->route($route);
     }
 
